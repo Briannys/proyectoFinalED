@@ -5,9 +5,11 @@ import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
 
+    private PanelBienvenida panelBienvenida;
+
 
     public VentanaPrincipal() {
-        setTitle("Casa de Apuestas");
+        setTitle("TVBosque");
         setSize(900, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -18,7 +20,15 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void inicializarComponentes() {
+        panelBienvenida = new PanelBienvenida();
+        getContentPane().add(panelBienvenida);
     }
 
+    public PanelBienvenida getPanelBienvenida() {
+        return panelBienvenida;
+    }
 
+    public void setPanelBienvenida(PanelBienvenida panelBienvenida) {
+        this.panelBienvenida = panelBienvenida;
+    }
 }
