@@ -1,6 +1,6 @@
-package Controller;
+package co.edu.unbosque.controller;
 
-import View.VentanaPrincipal;
+import co.edu.unbosque.view.VentanaPrincipal;
 
 public class Controller {
 
