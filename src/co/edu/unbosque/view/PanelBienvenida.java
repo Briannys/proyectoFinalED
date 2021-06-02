@@ -36,6 +36,9 @@ public class PanelBienvenida extends JavaPanel {
 
     }
 
+
+
+
     public void devolverImagenLabel(String src, String tipo, int escalax, int escalay, JLabel b) {
         ImageIcon imagen1 = new ImageIcon(getClass().getResource("/images/" + src + "." + tipo));
         ImageIcon icon = new ImageIcon(imagen1.getImage().getScaledInstance(escalax, escalay, Image.SCALE_DEFAULT));
