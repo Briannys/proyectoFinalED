@@ -32,11 +32,7 @@ public class PanelBienvenida extends JavaPanel {
         l1.setBounds(0, 0, 900, 700);
         add(l1);
 
-
-
     }
-
-
 
 
     public void devolverImagenLabel(String src, String tipo, int escalax, int escalay, JLabel b) {
