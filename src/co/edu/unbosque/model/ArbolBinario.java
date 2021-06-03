@@ -1,47 +1,47 @@
 package co.edu.unbosque.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class ArbolBinario {
+public class ArbolBinario implements Serializable {
 
     private NodoArbol raiz;
-    private ArrayList<Integer> elementos;
+
 
     public ArbolBinario() {
         raiz = null;
-        elementos = new ArrayList<Integer>();
+
     }
 
     public boolean arbolVacio() {
         return raiz == null;
     }
 
-    public void Insertar(int dato) {
-        NodoArbol newNodo = new NodoArbol(dato);
-        if (elementoNOExite(dato)) {
-            if (arbolVacio()) {
-                elementos.add(newNodo.getDato());
-                raiz = newNodo;
-            } else {
-                elementos.add(newNodo.getDato());
-                NodoArbol aux = raiz;
-                while (aux != null) {
-                    newNodo.setPadre(aux);
-                    if (newNodo.getDato() >= aux.getDato()) {
-                        aux = aux.getHijoDerecho();
-                    } else {
-                        aux = aux.getHijoIzquierdo();
-                    }
-                }
-                if (newNodo.getDato() < newNodo.getPadre().getDato()) {
-                    newNodo.getPadre().setHijoIzquierdo(newNodo);
+    public void insertar(Pelicula pelicula) {
+        NodoArbol newNodo = new NodoArbol(pelicula);
+        if (arbolVacio()) {
+            raiz = newNodo;
+        } else {
+            NodoArbol aux = raiz;
+            while (aux != null) {
+                newNodo.setPadre(aux);
+                if (newNodo.getPelicula().getClave() >= aux.getPelicula().getClave()) {
+                    aux = aux.getHijoDerecho();
                 } else {
-                    newNodo.getPadre().setHijoDerecho(newNodo);
-
+                    aux = aux.getHijoIzquierdo();
                 }
             }
+            if (newNodo.getPelicula().getClave() < newNodo.getPelicula().getClave()) {
+                newNodo.getPadre().setHijoIzquierdo(newNodo);
+            } else {
+                newNodo.getPadre().setHijoDerecho(newNodo);
+
+            }
         }
+
+
+
     }
 
     public Boolean eliminar(int dato) {
@@ -49,9 +49,9 @@ public class ArbolBinario {
         NodoArbol padre = raiz; //va a sabeer el padre del que estamos recorriendo
         boolean esHijoIzq = true; //para saber si es hijo izquierdo o derecho
 
-        while (aux.getDato() != dato) {
+        while (aux.getPelicula().getClave()!= dato) {
             padre = aux;
-            if (dato < aux.getDato()) {
+            if (dato < aux.getPelicula().getClave()) {
                 esHijoIzq = true;
                 aux = aux.getHijoIzquierdo();
             } else {
@@ -105,8 +105,8 @@ public class ArbolBinario {
 
     public NodoArbol busqueda(int a) {
         NodoArbol aux = raiz;
-        while (aux.getDato() != a) {
-            if (a < aux.getDato()) {
+        while (aux.getPelicula().getClave() != a) {
+            if (a < aux.getPelicula().getClave()) {
                 aux = aux.getHijoIzquierdo();
             } else {
                 aux = aux.getHijoDerecho();
@@ -131,12 +131,12 @@ public class ArbolBinario {
             reemplazarPadre.setHijoIzquierdo(reemplazo.getHijoDerecho());
             reemplazo.setHijoDerecho(aux.getHijoDerecho());
         }
-        System.out.println("El nodo de reemplazo es " + reemplazo.getDato());
+        System.out.println("El nodo de reemplazo es " + reemplazo.getPelicula().getClave());
         return reemplazo;
 
     }
 
-    public boolean elementoNOExite(int a) {
+    /* public boolean elementoNOExite(int a) {
         int cont = 0;
         if (!arbolVacio()) {
             for (int i = 0; i < elementos.size(); i++) {
@@ -147,39 +147,15 @@ public class ArbolBinario {
             }
         }
         return cont == 0;
-    }
+    }*/
 
-    public ArrayList recorridoPostOrden(NodoArbol nodo, ArrayList a) {
-        if (nodo != null) {
-            recorridoPostOrden(nodo.getHijoIzquierdo(), a);
-            recorridoPostOrden(nodo.getHijoDerecho(), a);
-            a.add(nodo.getDato());
-
-        }
-        return a;
-    }
-
-    public ArrayList recorrerInOrder(NodoArbol nodo, ArrayList a) {
-        if (nodo != null) {
-            recorrerInOrder(nodo.getHijoIzquierdo(), a);
-            a.add(nodo.getDato());
-            recorrerInOrder(nodo.getHijoDerecho(), a);
-        }
-        return a;
-    }
-
-    public ArrayList recorerPreOrden(NodoArbol nodo, ArrayList a) {
-        if (nodo != null) {
-            a.add(nodo.getDato());
-            recorerPreOrden(nodo.getHijoIzquierdo(), a);
-            recorerPreOrden(nodo.getHijoDerecho(), a);
-
-        }
-        return a;
+    public void setRaiz(NodoArbol raiz) {
+        this.raiz = raiz;
     }
 
     public NodoArbol getRaiz() {
         return raiz;
     }
+
 
 }
