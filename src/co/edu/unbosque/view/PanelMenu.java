@@ -54,7 +54,7 @@ public class PanelMenu extends JPanel {
         inicializarBotones(buttons, "VOLVER", 12, "Volver", 60, 550, 200, 60,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, false);
 
-
+        //gif de flechitas
         labels = new JLabel[7];
         devolverImagenLabel(labels, "flecha", "gif", 50, 50, 0, 15, 70, 50, 50);
         devolverImagenLabel(labels, "flecha", "gif", 50, 50, 1, 15, 150, 50, 50);
