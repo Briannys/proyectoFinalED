@@ -1,32 +1,34 @@
 package co.edu.unbosque.model;
 
-public class NodoArbol {
+import java.io.Serializable;
 
-    private int dato;
+public class NodoArbol implements Serializable {
+
+    private Pelicula pelicula;
     private NodoArbol padre;
     private NodoArbol hijoIzquierdo;
     private NodoArbol hijoDerecho;
 
     public NodoArbol() {
-        this.dato = 0;
+        this.pelicula = null;
         this.padre = null;
         this.hijoDerecho = null;
         this.hijoIzquierdo = null;
     }
 
-    public NodoArbol(int dato) {
-        this.dato = dato;
+    public NodoArbol(Pelicula pelicula) {
+        this.pelicula = pelicula;
         this.padre = null;
         this.hijoDerecho = null;
         this.hijoIzquierdo = null;
     }
 
-    public int getDato() {
-        return dato;
+    public Pelicula getPelicula() {
+        return pelicula;
     }
 
-    public void setDato(int dato) {
-        this.dato = dato;
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
     }
 
     public NodoArbol getHijoIzquierdo() {

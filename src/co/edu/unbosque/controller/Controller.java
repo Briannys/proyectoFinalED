@@ -1,18 +1,29 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.model.ArbolBinario;
+import co.edu.unbosque.persistence.ArbolBinarioDAO;
+import co.edu.unbosque.persistence.OperacionArchivo;
 import co.edu.unbosque.view.VentanaPrincipal;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Controller implements ActionListener {
 
     private VentanaPrincipal view;
 
-    public Controller() {
-        view = new VentanaPrincipal();
-        asignarOyentes();
+    public Controller() throws ClassNotFoundException {
+       // view = new VentanaPrincipal();
+       // asignarOyentes();
+        ArbolBinarioDAO dao = new ArbolBinarioDAO();
+        dao.leerDatosCsv();
+
+
+
+
+
     }
 
     public void asignarOyentes() {
