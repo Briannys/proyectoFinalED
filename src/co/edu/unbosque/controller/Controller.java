@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.model.ArbolBinario;
+import co.edu.unbosque.model.Pelicula;
 import co.edu.unbosque.persistence.ArbolBinarioDAO;
 import co.edu.unbosque.persistence.OperacionArchivo;
 import co.edu.unbosque.view.VentanaPrincipal;
@@ -19,7 +20,7 @@ public class Controller implements ActionListener {
        // asignarOyentes();
         ArbolBinarioDAO dao = new ArbolBinarioDAO();
         dao.leerDatosCsv();
-
+       dao.editarPelicula(175461,"Nuevo nombre");
 
 
 

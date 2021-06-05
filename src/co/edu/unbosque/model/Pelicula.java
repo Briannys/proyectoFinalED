@@ -29,6 +29,23 @@ public class Pelicula implements Serializable {
         this.clave = clave;
     }
 
+    @Override
+    public String toString() {
+        return "Pelicula{" +
+                "titulo='" + titulo + '\'' +
+                ", estudio='" + estudio + '\'' +
+                ", estado='" + estado + '\'' +
+                ", version='" + version + '\'' +
+                ", precio=" + precio +
+                ", clasificacion='" + clasificacion + '\'' +
+                ", anio='" + anio + '\'' +
+                ", genero='" + genero + '\'' +
+                ", fechaPublicacion='" + fechaPublicacion + '\'' +
+                ", id=" + id +
+                ", clave=" + clave +
+                '}';
+    }
+
     public String getTitulo() {
         return titulo;
     }

@@ -19,6 +19,7 @@ public class ArbolBinario implements Serializable {
     }
 
     public void insertar(Pelicula pelicula) {
+        int cont=0;
         NodoArbol newNodo = new NodoArbol(pelicula);
         if (arbolVacio()) {
             raiz = newNodo;
@@ -28,13 +29,19 @@ public class ArbolBinario implements Serializable {
                 newNodo.setPadre(aux);
                 if (newNodo.getPelicula().getClave() >= aux.getPelicula().getClave()) {
                     aux = aux.getHijoDerecho();
+                   // System.out.println(cont);
+                   // System.out.println("Insert derecha");
+                    cont++;
                 } else {
+                   // System.out.println("insert izquierda");
                     aux = aux.getHijoIzquierdo();
                 }
             }
             if (newNodo.getPelicula().getClave() < newNodo.getPelicula().getClave()) {
+
                 newNodo.getPadre().setHijoIzquierdo(newNodo);
             } else {
+
                 newNodo.getPadre().setHijoDerecho(newNodo);
 
             }
@@ -43,6 +50,8 @@ public class ArbolBinario implements Serializable {
 
 
     }
+
+
 
     public Boolean eliminar(int dato) {
         NodoArbol aux = raiz; //va a recorrer el arbol
@@ -101,6 +110,37 @@ public class ArbolBinario implements Serializable {
 
         return true;
 
+    }
+
+    public int obtenerClaveLibre(){
+        NodoArbol aux = raiz;
+        while(aux.getHijoDerecho()!=null){
+            aux = aux.getHijoDerecho();
+        }
+        return aux.getPelicula().getClave()+1;
+    }
+
+    public int calcularTamanio(){
+        NodoArbol aux = raiz;
+        int cont = 0;
+        while(aux!=null){
+            cont++;
+            aux = aux.getHijoDerecho();
+        }
+        return cont;
+    }
+
+    public Pelicula encontrarPelicula(int id, int cont){
+        NodoArbol aux = raiz;
+        while(aux!=null){
+           // System.out.println(cont);
+            if(aux.getPelicula().getId()==id){
+                return aux.getPelicula();
+            }
+            aux = aux.getHijoDerecho();
+            cont++;
+        }
+        return null;
     }
 
     public NodoArbol busqueda(int a) {
