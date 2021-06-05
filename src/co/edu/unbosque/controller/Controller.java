@@ -20,7 +20,8 @@ public class Controller implements ActionListener {
        // asignarOyentes();
         ArbolBinarioDAO dao = new ArbolBinarioDAO();
         dao.leerDatosCsv();
-       dao.editarPelicula(175461,"Nuevo nombre");
+        dao.agregarPelicula(new Pelicula("Titulo1"));
+      // dao.editarPelicula(175461,"Nuevo nombre");
 
 
 
