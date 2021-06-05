@@ -11,10 +11,11 @@ public class OperacionArchivo {
 
     public ArbolBinario[] leerCsv(){
         int n = 0;
+        int contadorEntrada = 0;
         int contadorArreglo = 0;
         int contadorCochino= 0;
         ArbolBinario arbol = new ArbolBinario();
-        ArbolBinario[] arboles = new ArbolBinario[284];
+        ArbolBinario[] arboles = new ArbolBinario[355];
         BufferedReader lectura = null;
         try {
             lectura = new BufferedReader(new FileReader("./Data/DVD.csv"));
@@ -34,15 +35,21 @@ public class OperacionArchivo {
                 Pelicula pelicula = new Pelicula(temp[0],temp[1],temp[2],temp[3],Integer.parseInt(temp[4]),
                         temp[5],temp[6],temp[7],temp[8],Integer.parseInt(temp[9]),n);
                 arbol.insertar(pelicula);
-                 if(contadorCochino==1000){
+                 if(contadorCochino==800&&n<284000){
                      arboles[contadorArreglo] = arbol;
-                     arbol.setRaiz(null);
+                     contadorArreglo++;
+                     arbol = null;
+                     arbol = new ArbolBinario();
                      contadorCochino = 0;
+                     contadorEntrada++;
                  }
                 linea = lectura.readLine();
                 n++;
                 contadorCochino++;
             }
+
+            arboles[contadorArreglo] = arbol;
+           // System.out.println("El contador es "+contadorArreglo);
             return arboles;
         }catch (IOException e){
             e.printStackTrace();
@@ -58,10 +65,10 @@ public class OperacionArchivo {
             recuperar.close();
             return aux;
         } catch (EOFException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }catch(IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }
