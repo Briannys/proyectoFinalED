@@ -17,16 +17,15 @@ public class ArbolBinarioDAO {
         if(operacion.obtener()==null){
             arbolBinario = operacion.leerCsv();
             operacion.escribir(arbolBinario);
+        }else{
+            arbolBinario = operacion.obtener();
         }
     }
 
     public void agregarPelicula(Pelicula pelicula) throws ClassNotFoundException {
-        if(operacion.obtener()!=null){
-            arbolBinario = operacion.obtener();
-        }
-        pelicula.setClave(arbolBinario[obtenerIndexLibre()].obtenerClaveLibre());
-        arbolBinario[0].insertar(pelicula);
-        System.out.println(arbolBinario[0].busqueda(283508).getPelicula().toString());
+        System.out.println("el tamanio antes es "+arbolBinario[arbolBinario.length-1].getCantidadNodos());
+        arbolBinario[arbolBinario.length-1].insertar(pelicula);
+        System.out.println("el tamanio antes es "+arbolBinario[arbolBinario.length-1].getCantidadNodos());
         operacion.escribir(arbolBinario);
 
 
@@ -34,10 +33,8 @@ public class ArbolBinarioDAO {
 
     public boolean editarPelicula(int id, String titulonuevo) throws ClassNotFoundException {
         System.out.println("entra al metodo");
-        if(operacion.obtener()!=null){
-            arbolBinario = operacion.obtener();
-        }
         for(int i=0;i<arbolBinario.length-1;i++){
+            System.out.println("i = "+i);
             if(arbolBinario[i].encontrarPelicula(id,0)!=null){
                 arbolBinario[i].encontrarPelicula(id,0).setTitulo(titulonuevo);
                 System.out.println("Pelicula encontrada");

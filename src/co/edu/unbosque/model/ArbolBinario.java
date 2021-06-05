@@ -7,9 +7,11 @@ import java.util.ArrayList;
 public class ArbolBinario implements Serializable {
 
     private NodoArbol raiz;
+    private int cantidadNodos;
 
 
     public ArbolBinario() {
+        cantidadNodos = 0;
         raiz = null;
 
     }
@@ -27,7 +29,7 @@ public class ArbolBinario implements Serializable {
             NodoArbol aux = raiz;
             while (aux != null) {
                 newNodo.setPadre(aux);
-                if (newNodo.getPelicula().getClave() >= aux.getPelicula().getClave()) {
+                if (newNodo.getPelicula().getId() >= aux.getPelicula().getId()) {
                     aux = aux.getHijoDerecho();
                    // System.out.println(cont);
                    // System.out.println("Insert derecha");
@@ -37,12 +39,14 @@ public class ArbolBinario implements Serializable {
                     aux = aux.getHijoIzquierdo();
                 }
             }
-            if (newNodo.getPelicula().getClave() < newNodo.getPelicula().getClave()) {
+            if (newNodo.getPelicula().getId() < newNodo.getPadre().getPelicula().getId()) {
 
                 newNodo.getPadre().setHijoIzquierdo(newNodo);
+                cantidadNodos++;
             } else {
 
                 newNodo.getPadre().setHijoDerecho(newNodo);
+                cantidadNodos++;
 
             }
         }
@@ -176,6 +180,13 @@ public class ArbolBinario implements Serializable {
 
     }
 
+    public int getCantidadNodos() {
+        return cantidadNodos;
+    }
+
+    public void setCantidadNodos(int cantidadNodos) {
+        this.cantidadNodos = cantidadNodos;
+    }
     /* public boolean elementoNOExite(int a) {
         int cont = 0;
         if (!arbolVacio()) {
