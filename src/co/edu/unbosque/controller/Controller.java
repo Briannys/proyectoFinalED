@@ -22,17 +22,18 @@ public class Controller implements ActionListener {
     private ArbolBinarioDAO arbol;
 
     public Controller() throws ClassNotFoundException {
-        view = new VentanaPrincipal();
-        asignarOyentes();
+      //  view = new VentanaPrincipal();
+       // asignarOyentes();
         arbol = new ArbolBinarioDAO();
-       /* arbol.leerDatosCsv();
-        String aux[][] = arbol.filtrarSegunAnio(2005, 2017);
+        arbol.leerDatosCsv();
+        //arbol.filtarValorMasCostosoDadoGenero("Horror");
+        String aux[][] = arbol.filtrarDadoVersion("LBX, 16:9");
         for (int i = 0; i < aux.length; i++) {
             for (int j = 0; j < 10; j++) {
                 System.out.print(aux[i][j] + ", ");
             }
             System.out.println("");
-        }*/
+        }
 
     }
 
