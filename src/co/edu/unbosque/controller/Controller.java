@@ -1,29 +1,28 @@
 package co.edu.unbosque.controller;
 
-import co.edu.unbosque.model.ArbolBinario;
-import co.edu.unbosque.model.Pelicula;
-import co.edu.unbosque.persistence.ArbolBinarioDAO;
-import co.edu.unbosque.persistence.OperacionArchivo;
+import co.edu.unbosque.model.ArbolBinarioDAO;
 import co.edu.unbosque.view.VentanaPrincipal;
+import sun.font.TextRecord;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller implements ActionListener {
 
     private VentanaPrincipal view;
+    private ArbolBinarioDAO arbol;
 
     public Controller() throws ClassNotFoundException {
-       // view = new VentanaPrincipal();
-       // asignarOyentes();
-        ArbolBinarioDAO dao = new ArbolBinarioDAO();
-        dao.leerDatosCsv();
-        dao.agregarPelicula(new Pelicula("Titulo1"));
-      // dao.editarPelicula(175461,"Nuevo nombre");
+        view = new VentanaPrincipal();
+        asignarOyentes();
+        arbol = new ArbolBinarioDAO();
 
-
+        //dao.agregarPelicula(new Pelicula("Titulo1"));
+        // dao.editarPelicula(175461,"Nuevo nombre");
 
 
     }
@@ -40,6 +39,24 @@ public class Controller implements ActionListener {
 
         if (command.equals("COMENZAR")) {
             cambiarPanel(view.getPanelMenu());
+        } else if (command.equals("CARGAR_DATASET")) {
+
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        arbol.leerDatosCsv();
+                        view.mensajeAlerta("Datos cargados con exito", "Se han cargado satisfactoriametne los datos del csv.", view.devolverImagenButton("chulito", "png", 50, 50));
+                    } catch (ClassNotFoundException classNotFoundException) {
+                        classNotFoundException.printStackTrace();
+                    }
+                }
+            };
+            Date fecha = new Date();
+            timer.schedule(task, fecha);
+            view.mensajeAlerta("Cargando", "Cargando data set.", view.devolverImagenButton("progress", "gif", 50, 50));
+            view.getPanelMenu().activarBotonesMenu();
 
         } else if (command.equals("MAS_OPCIONES")) {
             view.getPanelMenu().moreOptions();
@@ -61,4 +78,6 @@ public class Controller implements ActionListener {
             view.getPanelMenu().devolverBoton(i).addActionListener(this);
         }
     }
+
+
 }

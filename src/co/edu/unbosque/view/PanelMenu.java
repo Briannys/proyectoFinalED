@@ -24,35 +24,35 @@ public class PanelMenu extends JPanel {
 
         buttons = new JButton[13];//Botones de la clase
         inicializarBotones(buttons, "CARGAR_DATASET", 0, "Cargar Dataset", 80, 70, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, true);
         inicializarBotones(buttons, "AGREGAR_FILM", 1, "Agregar Ejemplar Film", 80, 150, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "EDITAR_FILM", 2, "Editar Informacion Film", 80, 230, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "GUARDAR_FILM", 3, "Guardar Film", 80, 310, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "BUSCAR_DEBUT", 4, "Buscar debut anual", 80, 390, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "BUSCAR_GENEROS", 5, "Buscar segun generos", 80, 470, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "MAS_OPCIONES", 6, "Mas opciones", 320, 580, 200, 60,
-                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, true);
+                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, true, false);
         //primeras opciones
         //_____________________________________________________________________________________________________________________-
         //segundas opciones
         inicializarBotones(buttons, "BUSCAR_TITULO", 7, "Buscar a partir de titulo", 80, 70, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false, false);
         inicializarBotones(buttons, "ELIMINAR_FILM", 8, "Eliminar Film", 80, 150, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false, false);
         inicializarBotones(buttons, "MAS_COSTO", 9, "Ejemplares mas costosos", 80, 230, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false, false);
         inicializarBotones(buttons, "BUSCAR_CLASIFICACIONES", 10, "Buscar film por clasificaciones", 80, 310, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false, false);
         inicializarBotones(buttons, "BUSCAR_VERSIONES", 11, "Buscar film por versiones", 80, 390, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, false, false);
 
         inicializarBotones(buttons, "VOLVER", 12, "Volver", 60, 550, 200, 60,
-                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, false);
+                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, false, false);
 
         //gif de flechitas
         labels = new JLabel[7];
@@ -97,10 +97,11 @@ public class PanelMenu extends JPanel {
 
 
     public void inicializarBotones(JButton[] bot, String command, int pos, String name, int x, int y, int xB,
-                                   int yB, Color color, Color color2, Color letra, int tamaño, boolean visible) {
+                                   int yB, Color color, Color color2, Color letra, int tamaño, boolean visible, boolean enable) {
         bot[pos] = new JButton(name);
         bot[pos].setBackground(color);
         bot[pos].setActionCommand(command);
+        bot[pos].setEnabled(enable);
         bot[pos].setVisible(visible);
         bot[pos].setBorder(null);
         bot[pos].setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -145,6 +146,17 @@ public class PanelMenu extends JPanel {
             }
         }
         devolverLabel(5).setVisible(true);
+        repaint();
+    }
+
+    public void activarBotonesMenu() {
+        for (int i = 0; i < buttons.length; i++) {
+            if (i > 0) {
+                buttons[i].setEnabled(true);
+            } else {
+                buttons[0].setEnabled(false);
+            }
+        }
         repaint();
     }
 

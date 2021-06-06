@@ -1,7 +1,6 @@
-package co.edu.unbosque.model;
+package co.edu.unbosque.model.persistence;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 
 public class ArbolBinario implements Serializable {

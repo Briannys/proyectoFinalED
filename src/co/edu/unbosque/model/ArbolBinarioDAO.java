@@ -1,9 +1,10 @@
-package co.edu.unbosque.persistence;
+package co.edu.unbosque.model;
 
-import co.edu.unbosque.model.ArbolBinario;
-import co.edu.unbosque.model.Pelicula;
+import co.edu.unbosque.model.persistence.ArbolBinario;
+import co.edu.unbosque.model.persistence.OperacionArchivo;
+import co.edu.unbosque.model.persistence.Pelicula;
 
-public class ArbolBinarioDAO {
+public class ArbolBinarioDAO  {
     private ArbolBinario arbolBinario[];
     private OperacionArchivo operacion;
 
@@ -75,4 +76,7 @@ public class ArbolBinarioDAO {
     public void setOperacion(OperacionArchivo operacion) {
         this.operacion = operacion;
     }
+
+
+
 }
