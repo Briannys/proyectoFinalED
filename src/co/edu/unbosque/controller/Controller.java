@@ -23,8 +23,8 @@ public class Controller implements ActionListener {
 
     public Controller() throws ClassNotFoundException {
         view = new VentanaPrincipal();
-        asignarOyentes();
         arbol = new ArbolBinarioDAO();
+        asignarOyentes();
        /* arbol.leerDatosCsv();
         String aux[][] = arbol.filtrarSegunAnio(2005, 2017);
         for (int i = 0; i < aux.length; i++) {
@@ -40,6 +40,7 @@ public class Controller implements ActionListener {
         view.getPanelBienvenida().getComenzar().addActionListener(this);
         view.getPanelAgregarFilm().getBoton().addActionListener(this);
         view.getPanelTabla().getVolver().addActionListener(this);
+        view.getPanelModificarFilm().getGuardar_modifi().addActionListener(this);
         asignarBotonesMenu();
 
     }
@@ -121,6 +122,9 @@ public class Controller implements ActionListener {
             DefaultTableModel model = new DefaultTableModel(matriz, header);
             view.getPanelTabla().getTablaDatos().setModel(model);
             view.repaint();
+//hasta aqui mostrar trabla______________________________________________________________________________
+        }else if(command.equals("GUARDAR_EDITAR_PELICULA")){
+            cambiarPanel(view.getPanelModificarFilm());
 
         } else if (command.equals("VOLVER_TABLA")) {
             cambiarPanel(view.getPanelMenu());

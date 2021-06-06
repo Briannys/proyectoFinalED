@@ -6,7 +6,7 @@ import co.edu.unbosque.model.persistence.Pelicula;
 
 import java.util.ArrayList;
 
-public class ArbolBinarioDAO  {
+public class ArbolBinarioDAO {
     private ArbolBinario arbolBinario[];
     private OperacionArchivo operacion;
 
@@ -17,10 +17,10 @@ public class ArbolBinarioDAO  {
     }
 
     public void leerDatosCsv() throws ClassNotFoundException {
-        if(operacion.obtener()==null){
+        if (operacion.obtener() == null) {
             arbolBinario = operacion.leerCsv();
             operacion.escribir(arbolBinario);
-        }else{
+        } else {
             arbolBinario = operacion.obtener();
         }
     }
@@ -32,10 +32,10 @@ public class ArbolBinarioDAO  {
         operacion.escribir(arbolBinario);
     }
 
-    public boolean editarPelicula(int id, String titulonuevo) throws ClassNotFoundException {
-        for(int i=0;i<=arbolBinario.length-1;i++){
-            if(arbolBinario[i].busqueda(id)!=null){
-                arbolBinario[i].busqueda(id).getPelicula().setTitulo(titulonuevo);
+    public boolean editarPelicula(int id, Pelicula film) throws ClassNotFoundException {
+        for (int i = 0; i <= arbolBinario.length - 1; i++) {
+            if (arbolBinario[i].busqueda(id) != null) {
+                arbolBinario[i].busqueda(id).setPelicula(film);
                 System.out.println("Pelicula encontrada");
                 operacion.escribir(arbolBinario);
                 return true;
@@ -46,9 +46,9 @@ public class ArbolBinarioDAO  {
         return false;
     }
 
-    public boolean comprobarExitencia(int id){
-        for(int i=0;i<=arbolBinario.length-1;i++){
-            if(arbolBinario[i].busqueda(id)!=null){
+    public boolean comprobarExitencia(int id) {
+        for (int i = 0; i <= arbolBinario.length - 1; i++) {
+            if (arbolBinario[i].busqueda(id) != null) {
                 System.out.println(arbolBinario[i].busqueda(id).getPelicula().toString());
                 return true;
             }
@@ -57,14 +57,14 @@ public class ArbolBinarioDAO  {
         return false;
     }
 
-    public String[][] filtrarSegunAnio(int anioInicio, int anioFinal){
+    public String[][] filtrarSegunAnio(int anioInicio, int anioFinal) {
         int tamanio = 0;
         ArrayList<Pelicula> peliculas = new ArrayList<>();
-        for(int i=0;i<=arbolBinario.length-1;i++){
-            arbolBinario[i].cantidadPeliculasSegunAnio(arbolBinario[i].getRaiz(),anioInicio,anioFinal,peliculas);
+        for (int i = 0; i <= arbolBinario.length - 1; i++) {
+            arbolBinario[i].cantidadPeliculasSegunAnio(arbolBinario[i].getRaiz(), anioInicio, anioFinal, peliculas);
         }
         String filtroPelicula[][] = new String[peliculas.size()][10];
-        for(int i=0;i<peliculas.size();i++){
+        for (int i = 0; i < peliculas.size(); i++) {
             filtroPelicula[i][0] = peliculas.get(i).getTitulo();
             filtroPelicula[i][1] = peliculas.get(i).getEstudio();
             filtroPelicula[i][2] = peliculas.get(i).getEstado();
@@ -82,7 +82,6 @@ public class ArbolBinarioDAO  {
     }
 
 
-
     public ArbolBinario[] getArbolBinario() {
         return arbolBinario;
     }
@@ -98,7 +97,6 @@ public class ArbolBinarioDAO  {
     public void setOperacion(OperacionArchivo operacion) {
         this.operacion = operacion;
     }
-
 
 
 }
