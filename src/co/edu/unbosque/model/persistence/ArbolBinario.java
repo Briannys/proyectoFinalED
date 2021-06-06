@@ -1,6 +1,7 @@
 package co.edu.unbosque.model.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class ArbolBinario implements Serializable {
@@ -20,7 +21,7 @@ public class ArbolBinario implements Serializable {
     }
 
     public void insertar(Pelicula pelicula) {
-        int cont=0;
+        int cont = 0;
         NodoArbol newNodo = new NodoArbol(pelicula);
         if (arbolVacio()) {
             raiz = newNodo;
@@ -30,11 +31,11 @@ public class ArbolBinario implements Serializable {
                 newNodo.setPadre(aux);
                 if (newNodo.getPelicula().getId() >= aux.getPelicula().getId()) {
                     aux = aux.getHijoDerecho();
-                   // System.out.println(cont);
-                   // System.out.println("Insert derecha");
+                    // System.out.println(cont);
+                    // System.out.println("Insert derecha");
                     cont++;
                 } else {
-                   // System.out.println("insert izquierda");
+                    // System.out.println("insert izquierda");
                     aux = aux.getHijoIzquierdo();
                 }
             }
@@ -51,9 +52,7 @@ public class ArbolBinario implements Serializable {
         }
 
 
-
     }
-
 
 
     public Boolean eliminar(int dato) {
@@ -61,7 +60,7 @@ public class ArbolBinario implements Serializable {
         NodoArbol padre = raiz; //va a sabeer el padre del que estamos recorriendo
         boolean esHijoIzq = true; //para saber si es hijo izquierdo o derecho
 
-        while (aux.getPelicula().getClave()!= dato) {
+        while (aux.getPelicula().getClave() != dato) {
             padre = aux;
             if (dato < aux.getPelicula().getClave()) {
                 esHijoIzq = true;
@@ -115,29 +114,48 @@ public class ArbolBinario implements Serializable {
 
     }
 
-    public int obtenerClaveLibre(){
+    public int obtenerClaveLibre() {
         NodoArbol aux = raiz;
-        while(aux.getHijoDerecho()!=null){
+        while (aux.getHijoDerecho() != null) {
             aux = aux.getHijoDerecho();
         }
-        return aux.getPelicula().getClave()+1;
+        return aux.getPelicula().getClave() + 1;
     }
 
-    public int calcularTamanio(){
+    public int calcularTamanio() {
         NodoArbol aux = raiz;
         int cont = 0;
-        while(aux!=null){
+        while (aux != null) {
             cont++;
             aux = aux.getHijoDerecho();
         }
         return cont;
     }
 
-    public Pelicula encontrarPelicula(int id, int cont){
+    public ArrayList recorerPreOrden(NodoArbol nodo, ArrayList a) {
+        if (nodo != null) {
+            a.add(nodo.getPelicula());
+            recorerPreOrden(nodo.getHijoIzquierdo(), a);
+            recorerPreOrden(nodo.getHijoDerecho(), a);
+        }
+        return a;
+    }
+
+    public Pelicula[] recorrerInOrder(NodoArbol nodo, Pelicula[] a, int cont) {
+        if (nodo != null) {
+            recorrerInOrder(nodo.getHijoIzquierdo(), a, cont);
+            a[cont] = nodo.getPelicula();
+            cont++;
+            recorrerInOrder(nodo.getHijoDerecho(), a, cont);
+        }
+        return a;
+    }
+
+    public Pelicula encontrarPelicula(int id, int cont) {
         NodoArbol aux = raiz;
-        while(aux!=null){
-           // System.out.println(cont);
-            if(aux.getPelicula().getId()==id){
+        while (aux != null) {
+            // System.out.println(cont);
+            if (aux.getPelicula().getId() == id) {
                 return aux.getPelicula();
             }
             aux = aux.getHijoDerecho();
