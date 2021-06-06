@@ -141,15 +141,7 @@ public class ArbolBinario implements Serializable {
         return a;
     }
 
-    public Pelicula[] recorrerInOrder(NodoArbol nodo, Pelicula[] a, int cont) {
-        if (nodo != null) {
-            recorrerInOrder(nodo.getHijoIzquierdo(), a, cont);
-            a[cont] = nodo.getPelicula();
-            cont++;
-            recorrerInOrder(nodo.getHijoDerecho(), a, cont);
-        }
-        return a;
-    }
+
 
     public Pelicula encontrarPelicula(int id, int cont) {
         NodoArbol aux = raiz;
@@ -197,6 +189,20 @@ public class ArbolBinario implements Serializable {
 
     }
 
+    public void cantidadPeliculasSegunAnio(NodoArbol nodo, int anioInicio, int anioFinal,ArrayList<Pelicula> peliculas){
+        if(nodo!=null){
+            cantidadPeliculasSegunAnio(nodo.getHijoIzquierdo(), anioInicio,anioFinal, peliculas);
+            String temp [] = nodo.getPelicula().getFechaPublicacion().split("/");
+            if(temp.length==3){
+                if(Integer.parseInt(temp[2])>= anioInicio&& Integer.parseInt(temp[2])<=anioFinal){
+                    peliculas.add(nodo.getPelicula());
+                }
+            }
+
+            cantidadPeliculasSegunAnio(nodo.getHijoDerecho(), anioInicio,anioFinal,peliculas);
+        }
+    }
+
     public int getCantidadNodos() {
         return cantidadNodos;
     }
@@ -224,6 +230,9 @@ public class ArbolBinario implements Serializable {
     public NodoArbol getRaiz() {
         return raiz;
     }
+
+
+
 
 
 }

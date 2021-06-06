@@ -25,15 +25,21 @@ public class Controller implements ActionListener {
         view = new VentanaPrincipal();
         asignarOyentes();
         arbol = new ArbolBinarioDAO();
-
-        // dao.editarPelicula(175461,"Nuevo nombre");
-
+       /* arbol.leerDatosCsv();
+        String aux[][] = arbol.filtrarSegunAnio(2005, 2017);
+        for (int i = 0; i < aux.length; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(aux[i][j] + ", ");
+            }
+            System.out.println("");
+        }*/
 
     }
 
     public void asignarOyentes() {
         view.getPanelBienvenida().getComenzar().addActionListener(this);
         view.getPanelAgregarFilm().getBoton().addActionListener(this);
+        view.getPanelTabla().getVolver().addActionListener(this);
         asignarBotonesMenu();
 
     }
@@ -93,16 +99,13 @@ public class Controller implements ActionListener {
         } else if (command.equals("VER_FLIMS")) {
             cambiarPanel(view.getPanelTabla());
             ArrayList<Pelicula> films = new ArrayList<Pelicula>();
-            int cont = 0;
+
             String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
-            for (int i = 0; i < 355; i++) {
+            for (int i = 0; i < arbol.getArbolBinario().length; i++) {
                 ArrayList<Pelicula> temp = new ArrayList<Pelicula>();
                 films.addAll(arbol.getArbolBinario()[i].recorerPreOrden(arbol.getArbolBinario()[i].getRaiz(), temp));
             }
-
-
             String[][] matriz = new String[films.size()][header.length];
-
             for (int i = 0; i < films.size(); i++) {
                 matriz[i][0] = films.get(i).getTitulo();
                 matriz[i][1] = films.get(i).getEstudio();
@@ -114,13 +117,13 @@ public class Controller implements ActionListener {
                 matriz[i][7] = films.get(i).getGenero();
                 matriz[i][8] = films.get(i).getFechaPublicacion();
                 matriz[i][9] = String.valueOf(films.get(i).getId());
-
-
             }
             DefaultTableModel model = new DefaultTableModel(matriz, header);
             view.getPanelTabla().getTablaDatos().setModel(model);
             view.repaint();
 
+        } else if (command.equals("VOLVER_TABLA")) {
+            cambiarPanel(view.getPanelMenu());
 
         } else if (command.equals("VOLVER")) {
             view.getPanelMenu().volver();
