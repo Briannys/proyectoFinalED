@@ -1,4 +1,4 @@
-package co.edu.unbosque.model;
+package co.edu.unbosque.model.persistence;
 
 import java.io.Serializable;
 

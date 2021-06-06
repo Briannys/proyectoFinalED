@@ -1,11 +1,6 @@
-package co.edu.unbosque.persistence;
-
-import co.edu.unbosque.model.ArbolBinario;
-import co.edu.unbosque.model.Pelicula;
+package co.edu.unbosque.model.persistence;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class OperacionArchivo {
 

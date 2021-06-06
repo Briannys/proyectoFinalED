@@ -6,6 +6,7 @@ import java.awt.*;
 public class VentanaPrincipal extends JFrame {
 
     private PanelBienvenida panelBienvenida;
+    private PanelAgregarFilm panelAgregarFilm;
     private PanelMenu panelMenu;
 
 
@@ -25,6 +26,18 @@ public class VentanaPrincipal extends JFrame {
         getContentPane().add(panelBienvenida);
 
         panelMenu = new PanelMenu();
+        panelAgregarFilm = new PanelAgregarFilm();
+    }
+
+    public void mensajeAlerta(String title, String message, Icon icon) {
+
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE, icon);
+    }
+
+    public ImageIcon devolverImagenButton(String src, String tipo, int escalax, int escalay) {
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/images/" + src + "." + tipo));
+        ImageIcon icon = new ImageIcon(imagen1.getImage().getScaledInstance(escalax, escalay, Image.SCALE_DEFAULT));
+        return icon;
     }
 
     public PanelBienvenida getPanelBienvenida() {
@@ -41,5 +54,13 @@ public class VentanaPrincipal extends JFrame {
 
     public void setPanelMenu(PanelMenu panelMenu) {
         this.panelMenu = panelMenu;
+    }
+
+    public PanelAgregarFilm getPanelAgregarFilm() {
+        return panelAgregarFilm;
+    }
+
+    public void setPanelAgregarFilm(PanelAgregarFilm panelAgregarFilm) {
+        this.panelAgregarFilm = panelAgregarFilm;
     }
 }
