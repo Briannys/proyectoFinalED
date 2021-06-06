@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame {
         panelMenu = new PanelMenu();
         panelAgregarFilm = new PanelAgregarFilm();
         panelTabla = new PanelTabla();
-        panelAgregarFilm = new PanelAgregarFilm();
+        panelModificarFilm = new PanelModificarFilm();
     }
 
     public void mensajeAlerta(String title, String message, Icon icon) {

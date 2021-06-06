@@ -60,9 +60,9 @@ public class ArbolBinario implements Serializable {
         NodoArbol padre = raiz; //va a sabeer el padre del que estamos recorriendo
         boolean esHijoIzq = true; //para saber si es hijo izquierdo o derecho
 
-        while (aux.getPelicula().getClave() != dato) {
+        while (aux.getPelicula().getId() != dato) {
             padre = aux;
-            if (dato < aux.getPelicula().getClave()) {
+            if (dato < aux.getPelicula().getId()) {
                 esHijoIzq = true;
                 aux = aux.getHijoIzquierdo();
             } else {
@@ -114,23 +114,7 @@ public class ArbolBinario implements Serializable {
 
     }
 
-    public int obtenerClaveLibre() {
-        NodoArbol aux = raiz;
-        while (aux.getHijoDerecho() != null) {
-            aux = aux.getHijoDerecho();
-        }
-        return aux.getPelicula().getClave() + 1;
-    }
 
-    public int calcularTamanio() {
-        NodoArbol aux = raiz;
-        int cont = 0;
-        while (aux != null) {
-            cont++;
-            aux = aux.getHijoDerecho();
-        }
-        return cont;
-    }
 
     public ArrayList recorerPreOrden(NodoArbol nodo, ArrayList a) {
         if (nodo != null) {
@@ -141,20 +125,6 @@ public class ArbolBinario implements Serializable {
         return a;
     }
 
-
-
-    public Pelicula encontrarPelicula(int id, int cont) {
-        NodoArbol aux = raiz;
-        while (aux != null) {
-            // System.out.println(cont);
-            if (aux.getPelicula().getId() == id) {
-                return aux.getPelicula();
-            }
-            aux = aux.getHijoDerecho();
-            cont++;
-        }
-        return null;
-    }
 
     public NodoArbol busqueda(int a) {
         NodoArbol aux = raiz;
@@ -189,9 +159,9 @@ public class ArbolBinario implements Serializable {
 
     }
 
-    public void cantidadPeliculasSegunAnio(NodoArbol nodo, int anioInicio, int anioFinal,ArrayList<Pelicula> peliculas){
+    public void cantidadPeliculasSegunFechaPublicacion(NodoArbol nodo, int anioInicio, int anioFinal,ArrayList<Pelicula> peliculas){
         if(nodo!=null){
-            cantidadPeliculasSegunAnio(nodo.getHijoIzquierdo(), anioInicio,anioFinal, peliculas);
+            cantidadPeliculasSegunFechaPublicacion(nodo.getHijoIzquierdo(), anioInicio,anioFinal, peliculas);
             String temp [] = nodo.getPelicula().getFechaPublicacion().split("/");
             if(temp.length==3){
                 if(Integer.parseInt(temp[2])>= anioInicio&& Integer.parseInt(temp[2])<=anioFinal){
@@ -199,7 +169,50 @@ public class ArbolBinario implements Serializable {
                 }
             }
 
-            cantidadPeliculasSegunAnio(nodo.getHijoDerecho(), anioInicio,anioFinal,peliculas);
+            cantidadPeliculasSegunFechaPublicacion(nodo.getHijoDerecho(), anioInicio,anioFinal,peliculas);
+        }
+    }
+
+    public void cantidadPeliculasSegunTitulo(NodoArbol nodo, String titulo,ArrayList<Pelicula> peliculas){
+        if(nodo!=null){
+            cantidadPeliculasSegunTitulo(nodo.getHijoIzquierdo(), titulo, peliculas);
+            if(nodo.getPelicula().getTitulo().startsWith(titulo)){
+                peliculas.add(nodo.getPelicula());
+            }
+
+            cantidadPeliculasSegunTitulo(nodo.getHijoDerecho(), titulo,peliculas);
+        }
+    }
+
+    public void cantidadPeliculasSegunClasificacion(NodoArbol nodo, String clasificacion,ArrayList<Pelicula> peliculas){
+        if(nodo!=null){
+            cantidadPeliculasSegunClasificacion(nodo.getHijoIzquierdo(), clasificacion, peliculas);
+            if(nodo.getPelicula().getClasificacion().equals(clasificacion)){
+                peliculas.add(nodo.getPelicula());
+            }
+            cantidadPeliculasSegunClasificacion(nodo.getHijoDerecho(), clasificacion,peliculas);
+        }
+    }
+
+    public void cantidadPeliculasSegunVersion(NodoArbol nodo, String version,ArrayList<Pelicula> peliculas){
+        if(nodo!=null){
+            cantidadPeliculasSegunVersion(nodo.getHijoIzquierdo(), version, peliculas);
+            if(nodo.getPelicula().getVersion().equals(version)){
+                peliculas.add(nodo.getPelicula());
+            }
+            cantidadPeliculasSegunVersion(nodo.getHijoDerecho(), version,peliculas);
+        }
+    }
+
+
+
+    public void cantidadPeliculasSegunGenero(NodoArbol nodo, String genero,ArrayList<Pelicula> peliculas){
+        if(nodo!=null){
+            cantidadPeliculasSegunGenero(nodo.getHijoIzquierdo(), genero, peliculas);
+            if(nodo.getPelicula().getGenero().equalsIgnoreCase(genero)){
+                peliculas.add(nodo.getPelicula());
+            }
+            cantidadPeliculasSegunGenero(nodo.getHijoDerecho(), genero,peliculas);
         }
     }
 
