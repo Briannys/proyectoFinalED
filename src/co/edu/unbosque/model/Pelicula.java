@@ -29,17 +29,17 @@ public class Pelicula implements Serializable {
         this.clave = clave;
     }
 
-    public Pelicula(String titulo) {
+    public Pelicula(String titulo, int id) {
         this.titulo = titulo;
-        this.estudio = "";
-        this.estado = "";
+        this.estudio = "estudio";
+        this.estado = "estado";
         this.version = "version";
         this.precio = 1000;
         this.clasificacion = "clasificacion";
         this.anio = "anio";
         this.genero = "genero";
-        this.fechaPublicacion = "fechaPublicacion";
-        this.id = 1231231;
+        this.fechaPublicacion = "10/11/11";
+        this.id = id;
         this.clave = 0;
     }
 

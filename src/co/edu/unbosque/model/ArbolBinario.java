@@ -134,23 +134,23 @@ public class ArbolBinario implements Serializable {
         return cont;
     }
 
-    public Pelicula encontrarPelicula(int id, int cont){
+    public Pelicula encontrarPelicula(int id){
         NodoArbol aux = raiz;
         while(aux!=null){
            // System.out.println(cont);
             if(aux.getPelicula().getId()==id){
+                System.out.println("La pelicula es "+aux.getPelicula().toString());
                 return aux.getPelicula();
             }
             aux = aux.getHijoDerecho();
-            cont++;
         }
         return null;
     }
 
     public NodoArbol busqueda(int a) {
         NodoArbol aux = raiz;
-        while (aux.getPelicula().getClave() != a) {
-            if (a < aux.getPelicula().getClave()) {
+        while (aux.getPelicula().getId() != a) {
+            if (a < aux.getPelicula().getId()) {
                 aux = aux.getHijoIzquierdo();
             } else {
                 aux = aux.getHijoDerecho();
@@ -159,6 +159,7 @@ public class ArbolBinario implements Serializable {
                 return null;
             }
         }
+        System.out.println("la pelicula es "+aux.getPelicula().toString());
         return aux;
     }
 
@@ -187,17 +188,28 @@ public class ArbolBinario implements Serializable {
     public void setCantidadNodos(int cantidadNodos) {
         this.cantidadNodos = cantidadNodos;
     }
-    /* public boolean elementoNOExite(int a) {
-        int cont = 0;
-        if (!arbolVacio()) {
-            for (int i = 0; i < elementos.size(); i++) {
-                if (a == elementos.get(i)) {
-                    cont++;
 
+    public void cantidadPeliculasSegunAnio(NodoArbol nodo, int anioInicio, int anioFinal,ArrayList<Pelicula> peliculas){
+        int cont = 0;
+        if(nodo!=null){
+            cantidadPeliculasSegunAnio(nodo.getHijoIzquierdo(), anioInicio,anioFinal, peliculas);
+            String temp [] = nodo.getPelicula().getFechaPublicacion().split("/");
+            if(temp.length==3){
+                if(Integer.parseInt(temp[2])>= anioInicio&& Integer.parseInt(temp[2])<=anioFinal){
+                    peliculas.add(nodo.getPelicula());
                 }
             }
+
+            cantidadPeliculasSegunAnio(nodo.getHijoDerecho(), anioInicio,anioFinal,peliculas);
         }
-        return cont == 0;
+    }
+    /*public ArrayList recorrerInOrder(NodoArbol nodo) {
+        if (nodo != null) {
+            recorrerInOrder(nodo.getHijoIzquierdo());
+
+            recorrerInOrder(nodo.getHijoDerecho());
+        }
+        return a;
     }*/
 
     public void setRaiz(NodoArbol raiz) {
