@@ -22,18 +22,22 @@ public class Controller implements ActionListener {
     private ArbolBinarioDAO arbol;
 
     public Controller() throws ClassNotFoundException {
-      //  view = new VentanaPrincipal();
-       // asignarOyentes();
+
+        view = new VentanaPrincipal();
         arbol = new ArbolBinarioDAO();
+        asignarOyentes();
+       /* arbol.leerDatosCsv();
+        String aux[][] = arbol.filtrarSegunAnio(2005, 2017);
         arbol.leerDatosCsv();
         //arbol.filtarValorMasCostosoDadoGenero("Horror");
         String aux[][] = arbol.filtrarDadoVersion("LBX, 16:9");
+
         for (int i = 0; i < aux.length; i++) {
             for (int j = 0; j < 10; j++) {
                 System.out.print(aux[i][j] + ", ");
             }
-            System.out.println("");
-        }
+
+        }*/
 
     }
 
@@ -41,6 +45,7 @@ public class Controller implements ActionListener {
         view.getPanelBienvenida().getComenzar().addActionListener(this);
         view.getPanelAgregarFilm().getBoton().addActionListener(this);
         view.getPanelTabla().getVolver().addActionListener(this);
+        view.getPanelModificarFilm().getGuardar_modifi().addActionListener(this);
         asignarBotonesMenu();
 
     }
@@ -122,6 +127,27 @@ public class Controller implements ActionListener {
             DefaultTableModel model = new DefaultTableModel(matriz, header);
             view.getPanelTabla().getTablaDatos().setModel(model);
             view.repaint();
+//hasta aqui mostrar trabla______________________________________________________________________________
+        } else if (command.equals("EDITAR_FILM")) {
+            cambiarPanel(view.getPanelModificarFilm());
+
+        } else if (command.equals("GUARDAR_EDITAR_PELICULA")) {
+            System.out.println();
+            if (view.getPanelModificarFilm().validarTextField() == 10) {
+                Pelicula temp = view.getPanelModificarFilm().capturarDatos();
+                try {
+                    arbol.editarPelicula(temp.getId(), temp);
+                    view.mensajeAlerta("Dato guardado.", "Se ha modificado correctamente la nueva pelicula"
+                            , view.devolverImagenButton("chulito", "png", 50, 50));
+                    cambiarPanel(view.getPanelMenu());
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
 
         } else if (command.equals("VOLVER_TABLA")) {
             cambiarPanel(view.getPanelMenu());
