@@ -5,14 +5,26 @@ import java.awt.*;
 
 public class PanelTabla extends JPanel {
 
-    public PanelBienvenida() {
+    private JTable tablaDatos;
+
+
+    public PanelTabla() {
         setLayout(null);
-        setVisible(true);
-        setBackground(new Color(157,205,90));
+        setVisible(false);
+        setBackground(new Color(157, 205, 90));
         inicializarComponentes();
     }
 
     private void inicializarComponentes() {
+
+        tablaDatos = new JTable();
+        tablaDatos.setBounds(20, 20, 840, 610);
+        JScrollPane sp = new JScrollPane(tablaDatos);
+        sp.setBounds(20, 20, 840, 610);
+        add(sp);
     }
 
+    public JTable getTablaDatos() {
+        return tablaDatos;
+    }
 }

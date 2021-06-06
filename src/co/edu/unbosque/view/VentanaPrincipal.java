@@ -8,6 +8,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelBienvenida panelBienvenida;
     private PanelAgregarFilm panelAgregarFilm;
     private PanelMenu panelMenu;
+    private PanelTabla panelTabla;
 
 
     public VentanaPrincipal() {
@@ -27,6 +28,7 @@ public class VentanaPrincipal extends JFrame {
 
         panelMenu = new PanelMenu();
         panelAgregarFilm = new PanelAgregarFilm();
+        panelTabla = new PanelTabla();
     }
 
     public void mensajeAlerta(String title, String message, Icon icon) {
@@ -62,5 +64,13 @@ public class VentanaPrincipal extends JFrame {
 
     public void setPanelAgregarFilm(PanelAgregarFilm panelAgregarFilm) {
         this.panelAgregarFilm = panelAgregarFilm;
+    }
+
+    public PanelTabla getPanelTabla() {
+        return panelTabla;
+    }
+
+    public void setPanelTabla(PanelTabla panelTabla) {
+        this.panelTabla = panelTabla;
     }
 }
