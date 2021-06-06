@@ -24,6 +24,7 @@ public class ArbolBinarioDAO  {
     }
 
     public void agregarPelicula(Pelicula pelicula) throws ClassNotFoundException {
+
         System.out.println("el tamanio antes es "+arbolBinario[arbolBinario.length-1].getCantidadNodos());
         arbolBinario[arbolBinario.length-1].insertar(pelicula);
         System.out.println("el tamanio antes es "+arbolBinario[arbolBinario.length-1].getCantidadNodos());

@@ -6,6 +6,7 @@ import java.awt.*;
 public class VentanaPrincipal extends JFrame {
 
     private PanelBienvenida panelBienvenida;
+    private PanelAgregarFilm panelAgregarFilm;
     private PanelMenu panelMenu;
 
 
@@ -25,6 +26,7 @@ public class VentanaPrincipal extends JFrame {
         getContentPane().add(panelBienvenida);
 
         panelMenu = new PanelMenu();
+        panelAgregarFilm = new PanelAgregarFilm();
     }
 
     public void mensajeAlerta(String title, String message, Icon icon) {
@@ -52,5 +54,13 @@ public class VentanaPrincipal extends JFrame {
 
     public void setPanelMenu(PanelMenu panelMenu) {
         this.panelMenu = panelMenu;
+    }
+
+    public PanelAgregarFilm getPanelAgregarFilm() {
+        return panelAgregarFilm;
+    }
+
+    public void setPanelAgregarFilm(PanelAgregarFilm panelAgregarFilm) {
+        this.panelAgregarFilm = panelAgregarFilm;
     }
 }
