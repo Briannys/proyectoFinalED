@@ -131,7 +131,17 @@ public class ArbolBinario implements Serializable {
         }
         return cont;
     }
-    
+
+    public ArrayList recorerPreOrden(NodoArbol nodo, ArrayList a) {
+        if (nodo != null) {
+            a.add(nodo.getPelicula());
+            recorerPreOrden(nodo.getHijoIzquierdo(), a);
+            recorerPreOrden(nodo.getHijoDerecho(), a);
+        }
+        return a;
+    }
+
+
 
     public Pelicula encontrarPelicula(int id, int cont) {
         NodoArbol aux = raiz;

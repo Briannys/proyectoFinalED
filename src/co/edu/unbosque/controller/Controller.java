@@ -98,6 +98,7 @@ public class Controller implements ActionListener {
             for (int i = 0; i < 355; i++) {
                 ArrayList<Pelicula> temp = new ArrayList<Pelicula>();
                 films.addAll(arbol.getArbolBinario()[i].recorerPreOrden(arbol.getArbolBinario()[i].getRaiz(), temp));
+
             }
 
 
