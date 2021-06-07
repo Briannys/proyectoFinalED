@@ -28,7 +28,7 @@ public class PanelMenu extends JPanel {
         inicializarBotones(buttons, "AGREGAR_FILM", 1, "Agregar Ejemplar Film", 80, 150, 450, 60,
                 new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "EDITAR_FILM", 2, "Editar Informacion Film", 80, 230, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "VER_FLIMS", 3, "Ver films", 80, 310, 450, 60,
                 new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "BUSCAR_DEBUT", 4, "Buscar debut anual", 80, 390, 450, 60,

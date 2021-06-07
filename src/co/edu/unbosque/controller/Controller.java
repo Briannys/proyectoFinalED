@@ -47,6 +47,7 @@ public class Controller implements ActionListener {
         view.getPanelTabla().getVolver().addActionListener(this);
         view.getPanelModificarFilm().getGuardar_modifi().addActionListener(this);
         asignarBotonesMenu();
+        asignarBotonesAño();
 
     }
 
@@ -148,7 +149,21 @@ public class Controller implements ActionListener {
                 view.mensajeAlerta("Error", "Verifique datos ingresados"
                         , view.devolverImagenButton("error", "png", 50, 50));
             }
+        } else if (command.equals("BUSCAR_DEBUT")) {
+            cambiarPanel(view.getPanelBuscarDebut());
 
+        } else if (command.equals("BUSQUEDA_AÑO")) {
+            if (view.getPanelBuscarDebut().verficarDatos()) {
+                Integer[] filtro = view.getPanelBuscarDebut().capturarAños();
+                String[][] matriz = arbol.filtrarSegunfechaPublicacion(filtro[0], filtro[1]);
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                DefaultTableModel model = new DefaultTableModel(matriz, header);
+                view.getPanelBuscarDebut().getTable().setModel(model);
+                view.getPanelBuscarDebut().verTabla();
+            }else{
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
         } else if (command.equals("VOLVER_TABLA")) {
             cambiarPanel(view.getPanelMenu());
 
@@ -168,6 +183,13 @@ public class Controller implements ActionListener {
     public void asignarBotonesMenu() {
         for (int i = 0; i < 13; i++) {
             view.getPanelMenu().devolverBoton(i).addActionListener(this);
+
+        }
+    }
+
+    public void asignarBotonesAño() {
+        for (int i = 0; i < 2; i++) {
+            view.getPanelBuscarDebut().devolverBoton(i).addActionListener(this);
         }
     }
 
