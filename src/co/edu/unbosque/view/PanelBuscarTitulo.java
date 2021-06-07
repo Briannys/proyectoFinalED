@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
-public class PanelBuscarGenero extends JPanel {
+public class PanelBuscarTitulo extends JPanel {
 
     private JLabel[] labels;
     private JTextField[] textFields;
@@ -14,7 +14,7 @@ public class PanelBuscarGenero extends JPanel {
     private JTable table;
     private JScrollPane sp;
 
-    public PanelBuscarGenero() {
+    public PanelBuscarTitulo() {
         setLayout(null);
         setVisible(false);
         setBackground(new Color(157, 205, 90));
@@ -23,8 +23,8 @@ public class PanelBuscarGenero extends JPanel {
 
     private void inicializarComponentes() {
         labels = new JLabel[2];
-        iniciarLabelTexto(0, "Buscar film por Genero:", 5, 10, 30, 300, 25, Color.white);
-        iniciarLabelTexto(1, "Ingrese genero para el filtro: ", 95, 90, 23, 400, 17, Color.black);
+        iniciarLabelTexto(0, "Buscar film por titulo:", 5, 10, 30, 600, 25, Color.white);
+        iniciarLabelTexto(1, "Ingrese titulo para el filtro: ", 95, 90, 23, 400, 17, Color.black);
 
 
         textFields = new JTextField[1];
@@ -32,7 +32,7 @@ public class PanelBuscarGenero extends JPanel {
 
 
         buttons = new JButton[2];
-        inicializarBotones(buttons, "BUSQUEDA_GEN", 0, "Buscar", 610, 80, 150, 40,
+        inicializarBotones(buttons, "BUSQUEDA_TIT", 0, "Buscar", 610, 80, 150, 40,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
         inicializarBotones(buttons, "VOlVER_AÑO", 1, "Volver", 360, 600, 150, 40,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
@@ -109,7 +109,7 @@ public class PanelBuscarGenero extends JPanel {
         }
     }
 
-    public String capturarGenero() {
+    public String capturarTitle() {
         return textFields[0].getText();
     }
 

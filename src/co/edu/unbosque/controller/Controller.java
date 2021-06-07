@@ -3,10 +3,7 @@ package co.edu.unbosque.controller;
 import co.edu.unbosque.model.ArbolBinarioDAO;
 import co.edu.unbosque.model.persistence.Pelicula;
 import co.edu.unbosque.view.VentanaPrincipal;
-import sun.font.TextRecord;
-import sun.management.counter.perf.PerfLongArrayCounter;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -47,7 +44,7 @@ public class Controller implements ActionListener {
         view.getPanelTabla().getVolver().addActionListener(this);
         view.getPanelModificarFilm().getGuardar_modifi().addActionListener(this);
         asignarBotonesMenu();
-        asignarBotonesAño();
+        asignarBotonesFiltro();
 
     }
 
@@ -179,6 +176,70 @@ public class Controller implements ActionListener {
                 String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
                 view.getPanelBuscarGenero().verTabla(matriz, header);
 
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
+
+        } else if (command.equals("BUSCAR_TITULO")) {
+            cambiarPanel(view.getPanelBuscarTitulo());
+        } else if (command.equals("BUSQUEDA_TIT")) {
+            if (view.getPanelBuscarTitulo().verficarDatos()) {
+                String[][] matriz = arbol.filtrarSeguntitulo(view.getPanelBuscarTitulo().capturarTitle());
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                view.getPanelBuscarTitulo().verTabla(matriz, header);
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
+        } else if (command.equals("ELIMINAR_FILM")) {
+            cambiarPanel(view.getPanelEliminarFilm());
+
+        } else if (command.equals("ELIMINAR")) {
+            if (view.getPanelEliminarFilm().verficarDatos()) {
+                arbol.eliminarPelicula(view.getPanelEliminarFilm().capturarId());
+                view.mensajeAlerta("Dato Eliminado.", "Se ha eliminado correctamente la pelicula"
+                        , view.devolverImagenButton("delete", "png", 50, 50));
+                cambiarPanel(view.getPanelMenu());
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
+        } else if (command.equals("MAS_COSTO")) {
+            cambiarPanel(view.getPanelBuscarCostoso());
+
+        } else if (command.equals("BUSQUEDA_COST")) {
+            if (view.getPanelBuscarCostoso().verficarDatos()) {
+                String[][] matriz = arbol.filtarValorMasCostosoDadoGenero(view.getPanelBuscarCostoso().capturarGenero());
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                view.getPanelBuscarCostoso().verTabla(matriz, header);
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
+        } else if (command.equals("BUSCAR_CLASIFICACIONES")) {
+            cambiarPanel(view.getPanelBuscarClasificaciones());
+
+        } else if (command.equals("BUSQUEDA_CLAS")) {
+            if (view.getPanelBuscarClasificaciones().verficarDatos()) {
+                String[][] matriz = arbol.filtrarDadoClasificacion(view.getPanelBuscarClasificaciones().capturarClasificacion());
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                view.getPanelBuscarClasificaciones().verTabla(matriz, header);
+            } else {
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
+            }
+        } else if (command.equals("BUSCAR_VERSIONES")) {
+            cambiarPanel(view.getPanelBuscarVersiones());
+
+        } else if (command.equals("BUSQUEDA_VER")) {
+            if (view.getPanelBuscarVersiones().verficarDatos()) {
+                String[][] matriz = arbol.filtrarDadoVersion(view.getPanelBuscarVersiones().capturarVersion());
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                view.getPanelBuscarVersiones().verTabla(matriz, header);
+            }else{
+                view.mensajeAlerta("Error", "Verifique datos ingresados"
+                        , view.devolverImagenButton("error", "png", 50, 50));
             }
 
 
@@ -205,10 +266,15 @@ public class Controller implements ActionListener {
         }
     }
 
-    public void asignarBotonesAño() {
+    public void asignarBotonesFiltro() {
         for (int i = 0; i < 2; i++) {
             view.getPanelBuscarDebut().devolverBoton(i).addActionListener(this);
             view.getPanelBuscarGenero().devolverBoton(i).addActionListener(this);
+            view.getPanelBuscarTitulo().devolverBoton(i).addActionListener(this);
+            view.getPanelEliminarFilm().devolverBoton(i).addActionListener(this);
+            view.getPanelBuscarCostoso().devolverBoton(i).addActionListener(this);
+            view.getPanelBuscarClasificaciones().devolverBoton(i).addActionListener(this);
+            view.getPanelBuscarVersiones().devolverBoton(i).addActionListener(this);
         }
     }
 
