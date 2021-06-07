@@ -1,11 +1,12 @@
 package co.edu.unbosque.view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
-public class PanelBuscarDebut extends JPanel {
+public class PanelBuscarGenero extends JPanel {
 
     private JLabel[] labels;
     private JTextField[] textFields;
@@ -13,7 +14,7 @@ public class PanelBuscarDebut extends JPanel {
     private JTable table;
     private JScrollPane sp;
 
-    public PanelBuscarDebut() {
+    public PanelBuscarGenero() {
         setLayout(null);
         setVisible(false);
         setBackground(new Color(157, 205, 90));
@@ -21,25 +22,25 @@ public class PanelBuscarDebut extends JPanel {
     }
 
     private void inicializarComponentes() {
-        labels = new JLabel[3];
-        iniciarLabelTexto(0, "Buscar film por año:", 5, 10, 30, 300, 25, Color.white);
-        iniciarLabelTexto(1, "Ingrese año inicio del filtro: ", 15, 90, 23, 400, 17, Color.black);
-        iniciarLabelTexto(2, "Ingrese año final del filtro : ", 440, 90, 23, 400, 17, Color.black);
+        labels = new JLabel[2];
+        iniciarLabelTexto(0, "Buscar film por Genero:", 5, 10, 30, 300, 25, Color.white);
+        iniciarLabelTexto(1, "Ingrese año inicio del filtro: ", 95, 90, 23, 400, 17, Color.black);
 
-        textFields = new JTextField[2];
-        iniciarTextArea(0, 240, 90, 23, 150);
-        iniciarTextArea(1, 662, 90, 23, 150);
+
+        textFields = new JTextField[1];
+        iniciarTextArea(0, 340, 90, 23, 200);
+
 
         buttons = new JButton[2];
-        inicializarBotones(buttons, "BUSQUEDA_AÑO", 0, "Buscar", 360, 140, 150, 40,
+        inicializarBotones(buttons, "BUSQUEDA_GEN", 0, "Buscar", 610, 80, 150, 40,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
         inicializarBotones(buttons, "VOlVER_AÑO", 1, "Volver", 360, 600, 150, 40,
-                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, false, true);
+                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
 
         table = new JTable();
-        table.setBounds(10, 190, 800, 400);
+        table.setBounds(10, 170, 860, 420);
         sp = new JScrollPane(table);
-        sp.setBounds(10, 190, 860, 400);
+        sp.setBounds(10, 170, 860, 420);
         sp.setVisible(false);
         add(sp);
 
@@ -93,23 +94,23 @@ public class PanelBuscarDebut extends JPanel {
         add(textFields[pos]);
     }
 
-    public void verTabla() {
+    public void verTabla(String[][] matriz, String[] headder) {
+        DefaultTableModel model = new DefaultTableModel(matriz, headder);
+        table.setModel(model);
         sp.setVisible(true);
         devolverBoton(1).setVisible(true);
     }
 
     public boolean verficarDatos() {
-        if (!textFields[0].getText().isEmpty() && !textFields[1].getText().isEmpty() &&
-                esNumero(textFields[0].getText()) && esNumero(textFields[1].getText())) {
+        if (!textFields[0].getText().isEmpty()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public Integer[] capturarAños() {
-        Integer[] temp = {Integer.parseInt(textFields[0].getText()), Integer.parseInt(textFields[1].getText())};
-        return temp;
+    public String capturarGenero() {
+        return textFields[0].getText();
     }
 
     public JTable getTable() {

@@ -11,6 +11,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelMenu panelMenu;
     private PanelTabla panelTabla;
     private PanelBuscarDebut panelBuscarDebut;
+    private PanelBuscarGenero panelBuscarGenero;
 
 
     public VentanaPrincipal() {
@@ -33,6 +34,7 @@ public class VentanaPrincipal extends JFrame {
         panelTabla = new PanelTabla();
         panelModificarFilm = new PanelModificarFilm();
         panelBuscarDebut = new PanelBuscarDebut();
+        panelBuscarGenero = new PanelBuscarGenero();
     }
 
     public void mensajeAlerta(String title, String message, Icon icon) {
@@ -88,5 +90,9 @@ public class VentanaPrincipal extends JFrame {
 
     public PanelBuscarDebut getPanelBuscarDebut() {
         return panelBuscarDebut;
+    }
+
+    public PanelBuscarGenero getPanelBuscarGenero() {
+        return panelBuscarGenero;
     }
 }

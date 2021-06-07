@@ -160,10 +160,28 @@ public class Controller implements ActionListener {
                 DefaultTableModel model = new DefaultTableModel(matriz, header);
                 view.getPanelBuscarDebut().getTable().setModel(model);
                 view.getPanelBuscarDebut().verTabla();
-            }else{
+            } else {
                 view.mensajeAlerta("Error", "Verifique datos ingresados"
                         , view.devolverImagenButton("error", "png", 50, 50));
             }
+
+        } else if (command.equals("VOlVER_AÑO")) {
+            cambiarPanel(view.getPanelMenu());
+
+            //hasta aqui bsuqeuda por año_______________________________________________________________________
+
+        } else if (command.equals("BUSCAR_GENEROS")) {
+            cambiarPanel(view.getPanelBuscarGenero());
+
+        } else if (command.equals("BUSQUEDA_GEN")) {
+            if (view.getPanelBuscarGenero().verficarDatos()) {
+                String[][] matriz = arbol.filtrarSegunGenero(view.getPanelBuscarGenero().capturarGenero());
+                String[] header = {"Titulo", "Estudio", "Estado", "Versiones", "Precio", "Casificacion", "Anio", "Genero", "Publicacion", "id"};
+                view.getPanelBuscarGenero().verTabla(matriz, header);
+
+            }
+
+
         } else if (command.equals("VOLVER_TABLA")) {
             cambiarPanel(view.getPanelMenu());
 
@@ -190,6 +208,7 @@ public class Controller implements ActionListener {
     public void asignarBotonesAño() {
         for (int i = 0; i < 2; i++) {
             view.getPanelBuscarDebut().devolverBoton(i).addActionListener(this);
+            view.getPanelBuscarGenero().devolverBoton(i).addActionListener(this);
         }
     }
 
