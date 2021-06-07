@@ -12,6 +12,11 @@ public class VentanaPrincipal extends JFrame {
     private PanelTabla panelTabla;
     private PanelBuscarDebut panelBuscarDebut;
     private PanelBuscarGenero panelBuscarGenero;
+    private PanelBuscarTitulo panelBuscarTitulo;
+    private PanelEliminarFilm panelEliminarFilm;
+    private PanelBuscarCostoso panelBuscarCostoso;
+    private PanelBuscarClasificaciones panelBuscarClasificaciones;
+    private PanelBuscarVersiones panelBuscarVersiones;
 
 
     public VentanaPrincipal() {
@@ -35,6 +40,11 @@ public class VentanaPrincipal extends JFrame {
         panelModificarFilm = new PanelModificarFilm();
         panelBuscarDebut = new PanelBuscarDebut();
         panelBuscarGenero = new PanelBuscarGenero();
+        panelBuscarTitulo = new PanelBuscarTitulo();
+        panelEliminarFilm = new PanelEliminarFilm();
+        panelBuscarCostoso = new PanelBuscarCostoso();
+        panelBuscarClasificaciones = new PanelBuscarClasificaciones();
+        panelBuscarVersiones = new PanelBuscarVersiones();
     }
 
     public void mensajeAlerta(String title, String message, Icon icon) {
@@ -94,5 +104,25 @@ public class VentanaPrincipal extends JFrame {
 
     public PanelBuscarGenero getPanelBuscarGenero() {
         return panelBuscarGenero;
+    }
+
+    public PanelBuscarTitulo getPanelBuscarTitulo() {
+        return panelBuscarTitulo;
+    }
+
+    public PanelEliminarFilm getPanelEliminarFilm() {
+        return panelEliminarFilm;
+    }
+
+    public PanelBuscarCostoso getPanelBuscarCostoso() {
+        return panelBuscarCostoso;
+    }
+
+    public PanelBuscarClasificaciones getPanelBuscarClasificaciones() {
+        return panelBuscarClasificaciones;
+    }
+
+    public PanelBuscarVersiones getPanelBuscarVersiones() {
+        return panelBuscarVersiones;
     }
 }

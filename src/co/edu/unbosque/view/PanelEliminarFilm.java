@@ -6,15 +6,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
-public class PanelBuscarGenero extends JPanel {
+public class PanelEliminarFilm extends JPanel {
 
     private JLabel[] labels;
     private JTextField[] textFields;
     private JButton[] buttons;
-    private JTable table;
-    private JScrollPane sp;
 
-    public PanelBuscarGenero() {
+    public PanelEliminarFilm() {
         setLayout(null);
         setVisible(false);
         setBackground(new Color(157, 205, 90));
@@ -23,26 +21,20 @@ public class PanelBuscarGenero extends JPanel {
 
     private void inicializarComponentes() {
         labels = new JLabel[2];
-        iniciarLabelTexto(0, "Buscar film por Genero:", 5, 10, 30, 300, 25, Color.white);
-        iniciarLabelTexto(1, "Ingrese genero para el filtro: ", 95, 90, 23, 400, 17, Color.black);
+        iniciarLabelTexto(0, "Eliminar film por id:", 5, 10, 30, 400, 25, Color.white);
+        iniciarLabelTexto(1, "Ingrese id para eliminar el film: ", 95, 90, 23, 400, 17, Color.black);
 
 
         textFields = new JTextField[1];
-        iniciarTextArea(0, 340, 90, 23, 200);
+        iniciarTextArea(0, 360, 90, 23, 200);
 
 
         buttons = new JButton[2];
-        inicializarBotones(buttons, "BUSQUEDA_GEN", 0, "Buscar", 610, 80, 150, 40,
+        inicializarBotones(buttons, "ELIMINAR", 0, "Eliminar", 610, 80, 150, 40,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
         inicializarBotones(buttons, "VOlVER_AÑO", 1, "Volver", 360, 600, 150, 40,
                 Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 17, true, true);
 
-        table = new JTable();
-        table.setBounds(10, 170, 860, 420);
-        sp = new JScrollPane(table);
-        sp.setBounds(10, 170, 860, 420);
-        sp.setVisible(false);
-        add(sp);
 
     }
 
@@ -94,32 +86,19 @@ public class PanelBuscarGenero extends JPanel {
         add(textFields[pos]);
     }
 
-    public void verTabla(String[][] matriz, String[] headder) {
-        DefaultTableModel model = new DefaultTableModel(matriz, headder);
-        table.setModel(model);
-        sp.setVisible(true);
-        devolverBoton(1).setVisible(true);
-    }
 
     public boolean verficarDatos() {
-        if (!textFields[0].getText().isEmpty()) {
+        if (!textFields[0].getText().isEmpty() && esNumero(textFields[0].getText())) {
             return true;
         } else {
             return false;
         }
     }
 
-    public String capturarGenero() {
-        return textFields[0].getText();
+    public int capturarId() {
+        return Integer.parseInt(textFields[0].getText());
     }
 
-    public JTable getTable() {
-        return table;
-    }
-
-    public JScrollPane getSp() {
-        return sp;
-    }
 
     private boolean esNumero(String m) {
         try {

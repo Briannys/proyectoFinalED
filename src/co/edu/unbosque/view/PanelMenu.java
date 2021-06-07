@@ -34,9 +34,9 @@ public class PanelMenu extends JPanel {
         inicializarBotones(buttons, "BUSCAR_DEBUT", 4, "Buscar debut anual", 80, 390, 450, 60,
                 new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "BUSCAR_GENEROS", 5, "Buscar segun generos", 80, 470, 450, 60,
-                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, true);
+                new Color(24, 34, 51), Color.WHITE, Color.WHITE, 25, true, false);
         inicializarBotones(buttons, "MAS_OPCIONES", 6, "Mas opciones", 320, 580, 200, 60,
-                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, true, false);
+                Color.WHITE, new Color(24, 34, 51), new Color(24, 34, 51), 25, true, true);
         //primeras opciones
         //_____________________________________________________________________________________________________________________-
         //segundas opciones
